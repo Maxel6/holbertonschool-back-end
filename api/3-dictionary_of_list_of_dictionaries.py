@@ -41,5 +41,3 @@ if __name__ == "__main__":
     json_filename = "todo_all_employees.json"
     with open(json_filename, 'w') as json_file:
         json.dump(all_employee_data, json_file)
-
-    print(f"Data exported to {json_filename}")
