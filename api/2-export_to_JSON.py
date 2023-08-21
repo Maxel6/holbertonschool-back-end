@@ -26,8 +26,7 @@ if __name__ == "__main__":
             for task in json_todo
         ]
     }
-    print (task_data)
 
-    json_filename = "todo_all_employees.json"
+    json_filename = f"{sys.argv[1]}.json"
     with open(json_filename, 'w') as json_file:
         json.dump(task_data, json_file)
