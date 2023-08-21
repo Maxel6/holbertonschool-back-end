@@ -7,10 +7,10 @@ import requests
 
 
 def fetch_employee_data(employee_id):
-    to_do = requests.get(f'https://jsonplaceholder.typicode.com/\
-                         todos?userId={employee_id}', timeout=5)
-    names = requests.get(f'https://jsonplaceholder.typicode.com/\
-                         users/{employee_id}', timeout=5)
+    to_do = requests.get(f'https://jsonplaceholder.typicode\
+.com/todos?userId={employee_id}', timeout=5)
+    names = requests.get(f'https://jsonplaceholder.typicode.\
+com/users/{employee_id}', timeout=5)
 
     if to_do.status_code == 200 and names.status_code == 200:
         json_todo = to_do.json()
