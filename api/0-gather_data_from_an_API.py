@@ -1,46 +1,36 @@
 #!/usr/bin/python3
 
-"""import request module"""
+"""import request and sys module"""
 import requests
+import sys
 
+if len(sys.argv) > 1:
+    user_id = sys.argv[1]
 
-"""Define the base URL of the REST API"""
-base_url = "https://jsonplaceholder.typicode.com"
+    url_name = f"https://jsonplaceholder.typicode.com/users/{user_id}"
+    url_todos = f"https://jsonplaceholder.typicode.com/todos?userId={user_id}"
+    name_request = requests.get(url_name)
+    todos_request = requests.get(url_todos)
 
+    if name_request.status_code == 200:
+        name_response = name_request.json()
+        name = name_response["name"]
 
-def get_employee_todo_progress(employee_id):
-    try:
-        """Make a GET request to fetch the employee's TODO list"""
-        todo_url = f"{base_url}/todos?userId={employee_id}"
-        response = requests.get(todo_url)
+    if todos_request.status_code == 200:
+        todos_response = todos_request.json()
+        completed = []
+        uncompleted = []
+        for task in todos_response:
+            if task['completed']:
+                completed.append(task)
+            else:
+                uncompleted.append(task)
+        todos_total = (len(completed) + len(uncompleted))
 
-        """Check if the request was successful"""
-        if response.status_code == 200:
-            todos = response.json()
-
-            """Get the user's name"""
-            user_url = f"{base_url}/users/{employee_id}"
-            user_response = requests.get(user_url)
-            user_data = user_response.json()
-            employee_name = user_data["name"]
-
-            """Calculate TODO list progress"""
-            total_tasks = len(todos)
-            completed_tasks = [todo["title"]
-                               for todo in todos if todo["completed"]]
-
-            """Print the progress information"""
-            print(f"Employee {employee_name} is done with tasks \
-                  ({len(completed_tasks)}/{total_tasks}):")
-            for task_title in completed_tasks:
-                print(f"\t{task_title}")
-        else:
-            print(f"Error: Unable to fetch TODO list for \
-                  Employee ID {employee_id}")
-    except Exception as e:
-        print(f"Error: {str(e)}")
-
-
-if __name__ == "__main__":
-    employee_id = int(input("Enter Employee ID: "))
-    get_employee_todo_progress(employee_id)
+    output = "Employee {} is done with tasks({}/{}):".format(
+        name, len(completed), todos_total)
+    print(output)
+    for task_name in completed:
+        print(f"\t {task_name['title']}")
+else:
+    print("Please provide a user_id as a command-line argument.")
