@@ -1,13 +1,17 @@
 #!/usr/bin/python3
-"""Python script that for a given employee ID returns all his todo list and exports it to JSON"""
+"""Python script that for a given employee ID
+returns all his todo list and exports it to JSON"""
 
-import requests
 import json
+import requests
 import sys
 
+
 if __name__ == "__main__":
-    to_do = requests.get('https://jsonplaceholder.typicode.com/todos?userId=' + sys.argv[1], timeout=5)
-    names = requests.get('https://jsonplaceholder.typicode.com/users/' + sys.argv[1], timeout=5)
+    to_do = requests.get('https://jsonplaceholder.typicode.com/todos?userId='
+                         + sys.argv[1], timeout=5)
+    names = requests.get('https://jsonplaceholder.typicode.com/users/'
+                         + sys.argv[1], timeout=5)
 
     json_todo = to_do.json()
     json_names = names.json()
