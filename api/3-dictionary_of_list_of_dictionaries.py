@@ -30,8 +30,7 @@ def fetch_employee_data(employee_id):
 if __name__ == "__main__":
     all_employee_data = {}
 
-    # Fetch data for all employee IDs (assuming a range of IDs, adjust as needed)
-    for employee_id in range(1, 11):  # Adjust the range as needed
+    for employee_id in range(1, 11):
         employee_data = fetch_employee_data(employee_id)
         if employee_data:
             user_id = str(employee_id)
@@ -39,9 +38,6 @@ if __name__ == "__main__":
                 all_employee_data[user_id] = []
             all_employee_data[user_id].append(employee_data)
 
-    # Export data to JSON
     json_filename = "todo_all_employees.json"
     with open(json_filename, 'w') as json_file:
         json.dump(all_employee_data, json_file)
-
-    print(f"Data exported to {json_filename}")
