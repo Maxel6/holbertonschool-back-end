@@ -1,8 +1,12 @@
 #!/usr/bin/python3
+
+# import request module
 import requests
+
 
 # Define the base URL of the REST API
 base_url = "https://jsonplaceholder.typicode.com"
+
 
 def get_employee_todo_progress(employee_id):
     try:
@@ -22,16 +26,20 @@ def get_employee_todo_progress(employee_id):
 
             # Calculate TODO list progress
             total_tasks = len(todos)
-            completed_tasks = [todo["title"] for todo in todos if todo["completed"]]
+            completed_tasks = [todo["title"]
+                               for todo in todos if todo["completed"]]
 
             # Print the progress information
-            print(f"Employee {employee_name} is done with tasks ({len(completed_tasks)}/{total_tasks}):")
+            print(f"Employee {employee_name} is done with tasks \
+                  ({len(completed_tasks)}/{total_tasks}):")
             for task_title in completed_tasks:
                 print(f"\t{task_title}")
         else:
-            print(f"Error: Unable to fetch TODO list for Employee ID {employee_id}")
+            print(f"Error: Unable to fetch TODO list for \
+                  Employee ID {employee_id}")
     except Exception as e:
         print(f"Error: {str(e)}")
+
 
 if __name__ == "__main__":
     employee_id = int(input("Enter Employee ID: "))
