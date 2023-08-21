@@ -1,35 +1,35 @@
 #!/usr/bin/python3
 
-# import request module
+"""import request module"""
 import requests
 
 
-# Define the base URL of the REST API
+"""Define the base URL of the REST API"""
 base_url = "https://jsonplaceholder.typicode.com"
 
 
 def get_employee_todo_progress(employee_id):
     try:
-        # Make a GET request to fetch the employee's TODO list
+        """Make a GET request to fetch the employee's TODO list"""
         todo_url = f"{base_url}/todos?userId={employee_id}"
         response = requests.get(todo_url)
 
-        # Check if the request was successful
+        """Check if the request was successful"""
         if response.status_code == 200:
             todos = response.json()
 
-            # Get the user's name
+            """Get the user's name"""
             user_url = f"{base_url}/users/{employee_id}"
             user_response = requests.get(user_url)
             user_data = user_response.json()
             employee_name = user_data["name"]
 
-            # Calculate TODO list progress
+            """Calculate TODO list progress"""
             total_tasks = len(todos)
             completed_tasks = [todo["title"]
                                for todo in todos if todo["completed"]]
 
-            # Print the progress information
+            """Print the progress information"""
             print(f"Employee {employee_name} is done with tasks \
                   ({len(completed_tasks)}/{total_tasks}):")
             for task_title in completed_tasks:
