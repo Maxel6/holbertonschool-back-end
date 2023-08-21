@@ -34,8 +34,6 @@ if __name__ == "__main__":
     csv_filename = f"{sys.argv[1]}.csv"
     with open(csv_filename, mode='w', newline='') as csv_file:
         csv_writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
-        csv_writer.writerow(
-            ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
         for title_task in titles_completed:
             csv_writer.writerow(
                 [sys.argv[1], json_names['name'], "Completed", title_task])
