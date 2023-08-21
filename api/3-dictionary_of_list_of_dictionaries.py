@@ -1,12 +1,16 @@
 #!/usr/bin/python3
-"""Python script that fetches and exports all tasks from all employees in JSON format"""
+"""Python script that fetches and
+exports all tasks from all employees in JSON format"""
 
-import requests
 import json
+import requests
+
 
 def fetch_employee_data(employee_id):
-    to_do = requests.get(f'https://jsonplaceholder.typicode.com/todos?userId={employee_id}', timeout=5)
-    names = requests.get(f'https://jsonplaceholder.typicode.com/users/{employee_id}', timeout=5)
+    to_do = requests.get(f'https://jsonplaceholder.typicode.com/\
+                         todos?userId={employee_id}', timeout=5)
+    names = requests.get(f'https://jsonplaceholder.typicode.com/\
+                         users/{employee_id}', timeout=5)
 
     if to_do.status_code == 200 and names.status_code == 200:
         json_todo = to_do.json()
@@ -26,6 +30,7 @@ def fetch_employee_data(employee_id):
         return task_data
 
     return None
+
 
 if __name__ == "__main__":
     all_employee_data = {}
