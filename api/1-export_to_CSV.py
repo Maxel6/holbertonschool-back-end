@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Python script that for a given employee ID returns all his todo list and exports it to CSV"""
+"""Python script that for a given employee ID returns all his todo
+    list and exports it to CSV"""
 
 import csv
 import requests
@@ -8,7 +9,8 @@ import sys
 
 if __name__ == "__main__":
     to_do = requests.get(
-        'https://jsonplaceholder.typicode.com/todos?userId=' + sys.argv[1], timeout=5)
+        'https://jsonplaceholder.typicode.com/todos?userId='
+        + sys.argv[1], timeout=5)
     names = requests.get(
         'https://jsonplaceholder.typicode.com/users/' + sys.argv[1], timeout=5)
 
