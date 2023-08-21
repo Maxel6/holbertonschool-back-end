@@ -17,8 +17,6 @@ if __name__ == "__main__":
     json_todo = to_do.json()
     json_names = names.json()
 
-    print(json_names)
-
     all_tasks = 0
     task_data = []
 
