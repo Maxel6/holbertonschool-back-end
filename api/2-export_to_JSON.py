@@ -19,9 +19,9 @@ if __name__ == "__main__":
     task_data = {
         sys.argv[1]: [
             {
-                "username": json_names['username'],
                 "task": task["title"],
-                "completed": task["completed"]
+                "completed": task["completed"],
+                "username": json_names['username']
             }
             for task in json_todo
         ]
