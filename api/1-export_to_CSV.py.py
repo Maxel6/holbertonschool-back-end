@@ -35,7 +35,9 @@ if __name__ == "__main__":
     with open(csv_filename, mode='w', newline='') as csv_file:
         csv_writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
         # Write the CSV header
-        csv_writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+        csv_writer.writerow(
+            ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
         # Write data for each completed task
         for title_task in titles_completed:
-            csv_writer.writerow([sys.argv[1], json_names['name'], "Completed", title_task])
+            csv_writer.writerow(
+                [sys.argv[1], json_names['name'], "Completed", title_task])
